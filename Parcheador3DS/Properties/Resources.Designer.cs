@@ -138,15 +138,6 @@ namespace Parcheador3DS.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
-        /// </summary>
-        internal static string ntrusa1 {
-            get {
-                return ResourceManager.GetString("ntrusa1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
         internal static byte[] parcheEURD {

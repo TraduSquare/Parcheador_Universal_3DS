@@ -131,27 +131,24 @@
     <value>..\Resources\3dstools.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="exeFSEUR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Nueva carpeta\exeFSEUR.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\exeFSEUR.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="exeFSUSA" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Nueva carpeta\exeFSUSA.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\exeFSUSA.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lista" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Nueva carpeta\lista.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>..\Resources\lista.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="ntreur" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Nueva carpeta\ntreur.plg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>..\Resources\ntreur.plg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="ntrusa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Nueva carpeta\ntrusa.plg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="ntrusa1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Nueva carpeta\ntrusa.plg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>..\Resources\ntrusa.plg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="parcheEURD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Nueva carpeta\parcheEURD.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\parcheEURD.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="parcheUSAD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Nueva carpeta\parcheUSAD.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\parcheUSAD.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

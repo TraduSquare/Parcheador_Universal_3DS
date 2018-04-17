@@ -117,7 +117,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\exeFS.xdelta" />
+    <None Include="Resources\exeFSEUR.xdelta" />
+    <None Include="Resources\exeFSUSA.xdelta" />
     <None Include="Resources\ntreur.plg" />
+    <None Include="Resources\ntrusa.plg" />
     <None Include="Resources\parcheEURD.xdelta" />
     <None Include="Resources\parcheUSAD.xdelta" />
     <None Include="romfs.xdelta" />
