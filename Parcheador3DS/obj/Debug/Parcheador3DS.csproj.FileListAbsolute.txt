@@ -1,0 +1,10 @@
+C:\Users\6001083\Documents\Visual\Parcheador_3DS_Universal\Parcheador3DS\obj\Debug\Parcheador3DS.csprojResolveAssemblyReference.cache
+C:\Users\6001083\Documents\Visual\Parcheador_3DS_Universal\Parcheador3DS\obj\Debug\Parcheador3DS.Form1.resources
+C:\Users\6001083\Documents\Visual\Parcheador_3DS_Universal\Parcheador3DS\obj\Debug\Parcheador3DS.Form2.resources
+C:\Users\6001083\Documents\Visual\Parcheador_3DS_Universal\Parcheador3DS\obj\Debug\Parcheador3DS.Properties.Resources.resources
+C:\Users\6001083\Documents\Visual\Parcheador_3DS_Universal\Parcheador3DS\obj\Debug\Parcheador3DS.csproj.GenerateResource.cache
+C:\Users\6001083\Documents\Visual\Parcheador_3DS_Universal\Parcheador3DS\obj\Debug\Parcheador3DS.csproj.CoreCompileInputs.cache
+C:\Users\6001083\Documents\Visual\Parcheador_3DS_Universal\Parcheador3DS\bin\Debug\Parcheador Universal 3DS.exe
+C:\Users\6001083\Documents\Visual\Parcheador_3DS_Universal\Parcheador3DS\bin\Debug\Parcheador Universal 3DS.pdb
+C:\Users\6001083\Documents\Visual\Parcheador_3DS_Universal\Parcheador3DS\obj\Debug\Parcheador Universal 3DS.exe
+C:\Users\6001083\Documents\Visual\Parcheador_3DS_Universal\Parcheador3DS\obj\Debug\Parcheador Universal 3DS.pdb
