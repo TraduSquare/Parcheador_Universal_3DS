@@ -95,12 +95,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Nueva carpeta\exeFSEUR.xdelta" />
-    <None Include="Nueva carpeta\exeFSUSA.xdelta" />
-    <None Include="Nueva carpeta\ntreur.plg" />
-    <None Include="Nueva carpeta\ntrusa.plg" />
-    <None Include="Nueva carpeta\parcheEURD.xdelta" />
-    <None Include="Nueva carpeta\parcheUSAD.xdelta" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -116,7 +110,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\exeFS.xdelta" />
     <None Include="Resources\exeFSEUR.xdelta" />
     <None Include="Resources\exeFSUSA.xdelta" />
     <None Include="Resources\ntreur.plg" />
@@ -132,18 +125,13 @@
     <None Include="Resources\ctrtool.exe" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\exeFS1.xdelta" />
-    <None Include="Resources\layeredfs.plg" />
-    <None Include="Resources\layeredfs1.plg" />
     <None Include="Resources\makerom.exe" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\romfs.xdelta" />
     <None Include="Resources\xdelta3.exe" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="f8b0c6cae0b9d98529813878f0149739.ico" />
-    <None Include="Nueva carpeta\lista.txt" />
     <None Include="Resources\3dstools.exe" />
     <None Include="Resources\lista.txt" />
   </ItemGroup>

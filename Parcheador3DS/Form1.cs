@@ -217,7 +217,6 @@ namespace Parcheador3DS
                         xdelta.RedirectStandardOutput = true;
                         Process x2 = Process.Start(xdelta);
                         string error = x2.StandardError.ReadToEnd();
-                        MessageBox.Show(error);
                         x2.WaitForExit();
                         if (error != "")
                         {
@@ -251,11 +250,13 @@ namespace Parcheador3DS
                          xdeltaEXEFS.ErrorDialog = true;
                          xdeltaEXEFS.RedirectStandardError = true;
                          xdeltaEXEFS.RedirectStandardOutput = true;
-                         Process proceso = Process.Start(xdelta);
-                         proceso.WaitForExit();
+                         Process proceso = Process.Start(xdeltaEXEFS);
+                         string error = proceso.StandardError.ReadToEnd();
+                        MessageBox.Show(error);
+                        proceso.WaitForExit();
                      } 
                      rutaEXEFS= "temp/modificado/exefs.bin";
-                     if (luma.Checked || ntr.Checked)
+                    if (luma.Checked || ntr.Checked)
                     {
                         File.WriteAllText("temp/lista.txt", Properties.Resources.lista);
                         string[] lista = File.ReadAllLines("temp/lista.txt");
