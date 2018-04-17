@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ntreur" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\layeredfs.plg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;iso-8859-1</value>
-  </data>
   <data name="makerom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\makerom.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -130,22 +127,31 @@
   <data name="xdelta3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\xdelta3.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="exeFSEUR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exeFS.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lista" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lista.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="romfs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\romfs.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ntrusa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\layeredfs1.plg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="exeFSUSA" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exeFS1.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="_3dstools" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3dstools.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="exeFSEUR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Nueva carpeta\exeFSEUR.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="exeFSUSA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Nueva carpeta\exeFSUSA.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lista" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Nueva carpeta\lista.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ntreur" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Nueva carpeta\ntreur.plg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ntrusa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Nueva carpeta\ntrusa.plg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ntrusa1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Nueva carpeta\ntrusa.plg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="parcheEURD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Nueva carpeta\parcheEURD.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="parcheUSAD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Nueva carpeta\parcheUSAD.xdelta;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

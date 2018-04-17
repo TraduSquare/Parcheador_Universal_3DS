@@ -101,26 +101,7 @@ namespace Parcheador3DS.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a font_message.cvt
-        ///font_system.cvt
-        ///message_english.mes
-        ///movie\ending.moflex
-        ///movie\Opening.moflex
-        ///movie\Title_movie.moflex
-        ///naui\config_ui.pac
-        ///naui\menu_ui.pac
-        ///naui\PC_Monitor.pac
-        ///naui\sc10_bg.pac
-        ///naui\Search.pac
-        ///naui\SearchConfirm.pac
-        ///texture\title1.cvt
-        ///texture\anim\BG\Text_10-01_00000.cvt
-        ///texture\anim\BG\Text_10-01_00001.cvt
-        ///texture\anim\BG\Text_10-01_00002.cvt
-        ///texture\anim\BG\Text_10-01_00003.cvt
-        ///texture\anim\BG\Text_10-01_00004.cvt
-        ///texture\anim\BG\Text_10-01_00005.cvt
-        ///texture\anim\BG\Text_ [resto de la cadena truncado]&quot;;.
+        ///   Busca una cadena traducida similar a .
         /// </summary>
         internal static string lista {
             get {
@@ -139,9 +120,7 @@ namespace Parcheador3DS.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a ÿ_-éá-é|`åPOâPEàt`åtpå`àpà¶èTã0à@å@à@åVáöÿÿ:HåXOâ&lt; å BàTï á á        /// áÄë½èð)áÿ_½èÿ/á á á áð)á&apos;¨(ÿÿH-é°âÐMâåå0 ã0å·ëå0å1å0å0å1å0å0å( ã å0å&lt;âh å å0åA?â å ååþëå0åSã
-        ///0å
-        ///ê0å&lt;â å å0åA?â å å0å0â0å áÐKâ½èH-é°â ÐMâåå0 á0Kå0 ã0åëå0å1å0å0å1å0å0å¨ å å0å0â [å å0å&lt;â å å0åA?â å å0å0âl å å0å0â å [resto de la cadena truncado]&quot;;.
+        ///   Busca una cadena traducida similar a .
         /// </summary>
         internal static string ntreur {
             get {
@@ -150,9 +129,7 @@ namespace Parcheador3DS.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a ÿ_-éá-é|`ŸåPOâPEàt`ŸåtpŸå`†àp‡à¶èTã0ƒà@“å@„à@ƒåVáöÿÿ:HŸåXOâ&lt; Ÿå BàTï á á        /// áÄë½èð)áÿ_½èÿ/á á á áð)á&apos;¨(€ÿÿH-é°âÐMâåå0 ã0å·ëå0å1“å0å0å1“å0å0å( ã ƒå0å&lt;ƒâh Ÿå ƒå0åA?ƒâ å ƒååþëå0åSã
-        ///0å
-        ///ê0å&lt;ƒâ å ƒå0åA?ƒâ å ƒå0å0ƒâ0“å áÐKâˆ½è€H-é°â ÐMâåå0 á0Kå0 ã0å„ëå0å1“å0å0å1“å0å0å¨ Ÿå ƒå0å0ƒâ [å ƒå0å&lt;ƒâŒ Ÿå ƒå0åA?ƒâ å ƒå0å0ƒâl Ÿå ƒå0å0ƒâ å [resto de la cadena truncado]&quot;;.
+        ///   Busca una cadena traducida similar a .
         /// </summary>
         internal static string ntrusa {
             get {
@@ -161,11 +138,30 @@ namespace Parcheador3DS.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a .
+        /// </summary>
+        internal static string ntrusa1 {
+            get {
+                return ResourceManager.GetString("ntrusa1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] romfs {
+        internal static byte[] parcheEURD {
             get {
-                object obj = ResourceManager.GetObject("romfs", resourceCulture);
+                object obj = ResourceManager.GetObject("parcheEURD", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] parcheUSAD {
+            get {
+                object obj = ResourceManager.GetObject("parcheUSAD", resourceCulture);
                 return ((byte[])(obj));
             }
         }

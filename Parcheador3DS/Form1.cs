@@ -141,12 +141,12 @@ namespace Parcheador3DS
 
                     if (xdt == "parcheEURD")
                     {
-                        File.WriteAllBytes("temp/parches/parcheEURD.xdelta", Properties.Resources.romfs);
+                        File.WriteAllBytes("temp/parches/parcheEURD.xdelta", Properties.Resources.parcheEURD);
                         File.WriteAllBytes("temp/parches/exeFSEUR.xdelta", Properties.Resources.exeFSEUR);
                     }
                     else if (xdt == "parcheUSAD")
                     {
-                        File.WriteAllBytes("temp/parches/parcheUSAD.xdelta", Properties.Resources.romfs);
+                        File.WriteAllBytes("temp/parches/parcheUSAD.xdelta", Properties.Resources.parcheEURD);
                         File.WriteAllBytes("temp/parches/exeFSUSA.xdelta", Properties.Resources.exeFSUSA);
                     }
                     string rutaJuego = textBox1.Text;
@@ -217,6 +217,7 @@ namespace Parcheador3DS
                         xdelta.RedirectStandardOutput = true;
                         Process x2 = Process.Start(xdelta);
                         string error = x2.StandardError.ReadToEnd();
+                        MessageBox.Show(error);
                         x2.WaitForExit();
                         if (error != "")
                         {
@@ -231,7 +232,7 @@ namespace Parcheador3DS
                     // Proceso para aplicar un xdelta al archivo exeFS.bin. Si tu parche no incluye modificaciones sobre el exeFS.bin,
                     // deja el proceso comentado. 
 
-                    /*  ProcessStartInfo xdeltaEXEFS = new ProcessStartInfo();
+                     ProcessStartInfo xdeltaEXEFS = new ProcessStartInfo();
                      {
                          string program = "temp/xdelta3.exe";
                          string arguments = "";
@@ -254,8 +255,7 @@ namespace Parcheador3DS
                          proceso.WaitForExit();
                      } 
                      rutaEXEFS= "temp/modificado/exefs.bin";
-                     */
-                    if (luma.Checked || ntr.Checked)
+                     if (luma.Checked || ntr.Checked)
                     {
                         File.WriteAllText("temp/lista.txt", Properties.Resources.lista);
                         string[] lista = File.ReadAllLines("temp/lista.txt");
