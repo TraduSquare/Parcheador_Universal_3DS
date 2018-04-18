@@ -93,33 +93,23 @@ namespace Parcheador3DS
             string rutaEXEFS = "temp/original/exefs.bin";
             if (textBox1.Text != "")
             {
-                if (usa.Checked||eur.Checked||checkBox1.Checked)
+                if (usa.Checked||eur.Checked)
                 {
                     MessageBox.Show("Se va a realizar el proceso de parcheo. Espera hasta que termine y no cierres la aplicación.", "Comienza el proceso.", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     //Eligiendo la región se coge un parche u otro y se usará el titleID adecuado para el juego. Si el titleID
                     //de tu juego es distinto, cámbialo aquí. Los xdelta deben cambiarse en los Resources para cada juego y versión
-
-                    if (checkBox1.Checked)
+                    if (usa.Checked)
+                    {
+                        region = "00040000001a6600";
+                        ntrPatch = "ntrusa";
+                        xdt = "parcheUSAD";
+                    }
+                    else if (eur.Checked)
                     {
                         region = "00040000001a6f00";
                         ntrPatch = "ntreur";
                         xdt = "parcheEURD";
-                    }
-                    else
-                    {
-                        if (usa.Checked)
-                        {
-                            region = "00040000001a6600";
-                            ntrPatch = "ntrusa";
-                            xdt = "parcheUSAD";
-                        }
-                        else if (eur.Checked)
-                        {
-                            region = "00040000001a6f00";
-                            ntrPatch = "ntreur";
-                            xdt = "parcheEURD";
-                        }
                     }
                     if (Directory.Exists("temp"))
                     {
@@ -441,22 +431,6 @@ namespace Parcheador3DS
             else
             {
                 MessageBox.Show("No se ha seleccionado ningún archivo, no podrás realizar el parcheo.", "Ningún archivo seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            eur.Checked = false;
-            usa.Checked = false;
-            if (checkBox1.Checked)
-            {
-                eur.Enabled = false;
-                usa.Enabled = false;
-            }
-            else
-            {
-                eur.Enabled = true;
-                usa.Enabled = true;
             }
         }
     }

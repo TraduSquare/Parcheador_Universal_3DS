@@ -44,7 +44,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -130,6 +129,7 @@
             // Parchear
             // 
             this.Parchear.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.Parchear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Parchear.ForeColor = System.Drawing.Color.White;
             this.Parchear.Location = new System.Drawing.Point(253, 350);
             this.Parchear.Margin = new System.Windows.Forms.Padding(4);
@@ -160,7 +160,7 @@
             // usa
             // 
             this.usa.AutoSize = true;
-            this.usa.Location = new System.Drawing.Point(330, 20);
+            this.usa.Location = new System.Drawing.Point(287, 20);
             this.usa.Margin = new System.Windows.Forms.Padding(4);
             this.usa.Name = "usa";
             this.usa.Size = new System.Drawing.Size(54, 20);
@@ -171,7 +171,7 @@
             // eur
             // 
             this.eur.AutoSize = true;
-            this.eur.Location = new System.Drawing.Point(190, 20);
+            this.eur.Location = new System.Drawing.Point(119, 20);
             this.eur.Margin = new System.Windows.Forms.Padding(4);
             this.eur.Name = "eur";
             this.eur.Size = new System.Drawing.Size(55, 20);
@@ -182,7 +182,6 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Black;
-            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.eur);
             this.groupBox2.Controls.Add(this.usa);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
@@ -193,7 +192,7 @@
             this.groupBox2.Size = new System.Drawing.Size(448, 49);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Edición del juego";
+            this.groupBox2.Text = "Región del juego";
             // 
             // groupBox3
             // 
@@ -232,17 +231,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(100, 98);
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(27, 20);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(106, 20);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Región única";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 
@@ -298,7 +286,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

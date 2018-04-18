@@ -116,7 +116,6 @@
     <None Include="Resources\ntrusa.plg" />
     <None Include="Resources\parcheEURD.xdelta" />
     <None Include="Resources\parcheUSAD.xdelta" />
-    <None Include="romfs.xdelta" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\3dstool.exe" />
