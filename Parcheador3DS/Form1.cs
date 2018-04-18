@@ -5,13 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Reflection;
 using System.Resources;
-using System.Net;
-using System.Threading;
 using System.Diagnostics;
 /*
  * Parcheador universal para juegos de 3DS. A lo largo del código se mostrarán comentarios para adaptar el contenido a cualquier juego
@@ -97,24 +93,33 @@ namespace Parcheador3DS
             string rutaEXEFS = "temp/original/exefs.bin";
             if (textBox1.Text != "")
             {
-                if (usa.Checked||eur.Checked)
+                if (usa.Checked||eur.Checked||checkBox1.Checked)
                 {
                     MessageBox.Show("Se va a realizar el proceso de parcheo. Espera hasta que termine y no cierres la aplicación.", "Comienza el proceso.", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     //Eligiendo la región se coge un parche u otro y se usará el titleID adecuado para el juego. Si el titleID
                     //de tu juego es distinto, cámbialo aquí. Los xdelta deben cambiarse en los Resources para cada juego y versión
 
-                    if (usa.Checked)
-                    {
-                        region = "00040000001a6600";
-                        ntrPatch = "ntrusa";
-                        xdt = "parcheUSAD";
-                    }
-                    else if (eur.Checked)
+                    if (checkBox1.Checked)
                     {
                         region = "00040000001a6f00";
                         ntrPatch = "ntreur";
                         xdt = "parcheEURD";
+                    }
+                    else
+                    {
+                        if (usa.Checked)
+                        {
+                            region = "00040000001a6600";
+                            ntrPatch = "ntrusa";
+                            xdt = "parcheUSAD";
+                        }
+                        else if (eur.Checked)
+                        {
+                            region = "00040000001a6f00";
+                            ntrPatch = "ntreur";
+                            xdt = "parcheEURD";
+                        }
                     }
                     if (Directory.Exists("temp"))
                     {
@@ -231,7 +236,7 @@ namespace Parcheador3DS
                     // Proceso para aplicar un xdelta al archivo exeFS.bin. Si tu parche no incluye modificaciones sobre el exeFS.bin,
                     // deja el proceso comentado. 
 
-                     ProcessStartInfo xdeltaEXEFS = new ProcessStartInfo();
+                    /* ProcessStartInfo xdeltaEXEFS = new ProcessStartInfo();
                      {
                          string program = "temp/xdelta3.exe";
                          string arguments = "";
@@ -255,7 +260,7 @@ namespace Parcheador3DS
                         MessageBox.Show(error);
                         proceso.WaitForExit();
                      } 
-                     rutaEXEFS= "temp/modificado/exefs.bin";
+                     rutaEXEFS= "temp/modificado/exefs.bin"; */
                     if (luma.Checked || ntr.Checked)
                     {
                         File.WriteAllText("temp/lista.txt", Properties.Resources.lista);
@@ -436,6 +441,22 @@ namespace Parcheador3DS
             else
             {
                 MessageBox.Show("No se ha seleccionado ningún archivo, no podrás realizar el parcheo.", "Ningún archivo seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            eur.Checked = false;
+            usa.Checked = false;
+            if (checkBox1.Checked)
+            {
+                eur.Enabled = false;
+                usa.Enabled = false;
+            }
+            else
+            {
+                eur.Enabled = true;
+                usa.Enabled = true;
             }
         }
     }
