@@ -14,13 +14,17 @@ using System.Diagnostics;
  * y parche de forma sencilla (IMPORTANTE LEER TODO EL CÓDIGO), pero aquí se dará una versión resumida de las bases.
  * 
  * 1. El parcheador se basa en aplicar parches xdelta al romfs.bin del juego, que contiene todos los archivos modificados.
- *    Por ello, crea archivos xdelta a partir del romfs (y exefs de ser necesario) del juego ya traducido/modificado, uno para cada región,
- *    de ser necesario, e inclúyelo en este proyecto bajo el nombre de parcheEURD.xdelta y parcheUSAD.xdelta.
+ *    Por ello, debes crear archivos xdelta a partir del romfs (y exefs de ser necesario) del juego ya traducido/modificado,
+ *    uno para cada región, de ser necesario, e inclúyelos en las Resources de este proyecto bajo el nombre de parcheEURD.xdelta
+ *    y parcheUSAD.xdelta.
+ *    Si usas parches exeFS, deberán tener el nombre exeFSEUR.xdelta y exeFSUSA.xdelta e incluirlos en las Resources también
  *    
  * 2. Para crear el parche luma/NTR es necesario un listado con los archivos modificados del juego.
- *    Usa la herramienta complementaria "Cuantificador 3DS.exe" e incluye el archivo "lista.txt" generado en las Resources de este proyecto.
+ *    Usa la herramienta complementaria "Cuantificador 3DS.exe" sobre la carpeta que contenga los archivos modificados
+ *    e incluye el archivo "lista.txt" generado en las Resources de este proyecto.
  *    
- *    2.1 Para el parche NTR también es necesario incluir en las Resources el archivo layered.plg de ambas regiones bajo el nombre ntreur y ntrusa.
+ *    2.1 Para el parche NTR también es necesario incluir en las Resources el archivo layered.plg
+ *    de ambas regiones bajo el nombre ntreur.plg y ntrusa.plg
  *    
  * 3. Para personalizar el aspecto del parcheador, accede a la pestaña Form1.cs [Diseño] y modifica la interfaz a tu gusto usando el apartado
  *    "Propiedades" en la zona inferior derecha del programa.
@@ -29,17 +33,13 @@ namespace Parcheador3DS
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
-
-        /* Se detecta automáticamente el SO donde se ejecuta el parcheador. En caso de hacerse en unix, debe ejecutarse
-         * a través de la plataforma "Mono".
-         */
+        public Form1() => InitializeComponent();
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            /* Se detecta automáticamente el SO donde se ejecuta el parcheador. En caso de hacerse en UNIX, debe ejecutarse
+            * a través de la plataforma "Mono". (NO IMPLEMENTADO AÚN)
+            */
             /* string plataforma;
             switch (Environment.OSVersion.Platform)
             {
@@ -57,14 +57,15 @@ namespace Parcheador3DS
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog archivoOriginal = new OpenFileDialog();
+            OpenFileDialog archivoOriginal = new OpenFileDialog
+            {
 
-            //Filtro para la elección de archivos, si se quiere añadir más, escribir "; *.extension" detrás de *.3ds
+                //Filtro para la elección de archivos, si se quiere añadir más, escribir "; *.extension" detrás de *.3ds
 
-            archivoOriginal.Filter = "Dump de juego 3DS|*.cxi;*.3ds";
-            archivoOriginal.FilterIndex = 1;
-
-            archivoOriginal.Multiselect = false;
+                Filter = "Dump de juego 3DS|*.cxi; *.3ds",
+                FilterIndex = 1,
+                Multiselect = false
+            };
             if (archivoOriginal.ShowDialog() == DialogResult.OK)
             {
                 string fullPath = Path.GetFullPath(archivoOriginal.FileName);
@@ -97,8 +98,8 @@ namespace Parcheador3DS
                 {
                     MessageBox.Show("Se va a realizar el proceso de parcheo. Espera hasta que termine y no cierres la aplicación.", "Comienza el proceso.", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    //Eligiendo la región se coge un parche u otro y se usará el titleID adecuado para el juego. Si el titleID
-                    //de tu juego es distinto, cámbialo aquí. Los xdelta deben cambiarse en los Resources para cada juego y versión
+                    // Eligiendo la región se coge un parche u otro y se usará el titleID adecuado para el juego. Si el titleID
+                    // de tu juego es distinto, cámbialo aquí. Los xdelta deben cambiarse en los Resources para cada juego y versión
                     if (usa.Checked)
                     {
                         region = "00040000001a6600";
@@ -116,7 +117,7 @@ namespace Parcheador3DS
                         Directory.Delete("temp", true);
                     }
 
-                    //Se crean los directorios y binarios que usará el parcheador
+                    // Se crean los directorios y binarios que usará el parcheador
 
                     DirectoryInfo temporal = Directory.CreateDirectory("temp");
                     Directory.CreateDirectory("temp/original");
@@ -128,12 +129,17 @@ namespace Parcheador3DS
                     File.WriteAllBytes("temp/3dstools.exe", Properties.Resources._3dstools);
                     File.WriteAllBytes("temp/makerom.exe", Properties.Resources.makerom);
 
-                    // En muchas ocasiones el romfs es igual para todas las regiones, por lo que solo hemos incluido un único xdelta para
-                    // aplicar a ambas versiones. En caso de tener dos xdelta, subir el adicional y modificar el valor de la llamada
-                    // "Properties.Resources" sustituyendo romfs por el xdelta necesario y agregado a los resources del proyecto.
-                    // El nombre de los Resources para el exeFS serán exeFSEUR y exeFSUSA. Si tu parche no contiene modificaciones en el
-                    // exeFS, no hace falta que borres estas líneas, únicamente creará arcihvos vacíos si no modificas el Resources.
-
+                    /* En muchas ocasiones el romfs es igual para todas las regiones. En ese caso, introducir en las resources solo
+                     * el parche EUR y modificar la llamada "Properties.Resources" sustituyendo "parcheUSAD"
+                     * por parcheEURD.
+                     *
+                     * El nombre de los Resources para el exeFS serán exeFSEUR y exeFSUSA. Si tu parche no contiene modificaciones en el
+                     * exeFS, no hace falta que borres estas líneas, únicamente creará arcihvos vacíos si no modificas el Resources.
+                     * 
+                     * Si el juego solo tiene una región (sobre todo en juegos japoneses), en el editor visual, seleccionar el botón USA, poner
+                     * la propiedad "Visible" en false y cambiar el nombre del botón EUR y poner la región deseada. Se aplicarán los
+                     * parches con nombre EUR en este caso.
+                     */
                     if (xdt == "parcheEURD")
                     {
                         File.WriteAllBytes("temp/parches/parcheEURD.xdelta", Properties.Resources.parcheEURD);
@@ -141,7 +147,7 @@ namespace Parcheador3DS
                     }
                     else if (xdt == "parcheUSAD")
                     {
-                        File.WriteAllBytes("temp/parches/parcheUSAD.xdelta", Properties.Resources.parcheEURD);
+                        File.WriteAllBytes("temp/parches/parcheUSAD.xdelta", Properties.Resources.parcheUSAD);
                         File.WriteAllBytes("temp/parches/exeFSUSA.xdelta", Properties.Resources.exeFSUSA);
                     }
                     string rutaJuego = textBox1.Text;
@@ -169,6 +175,7 @@ namespace Parcheador3DS
                     }
 
                     //Se extrae el contenido del CXI.
+
                     label2.Text = "Extrayendo archivo romfs.bin";
                     groupBox3.Refresh();
                     ProcessStartInfo process = new ProcessStartInfo();
@@ -187,7 +194,7 @@ namespace Parcheador3DS
                     label2.Text = "Aplicando parche al archivo romfs.bin";
                     groupBox3.Refresh();
 
-                    // Dependiendo de la elección de región se aplica el parche EUR o USA. Dichos xdelta deben sustituirse en los Resources
+                    // Dependiendo de la elección de región se aplica el parche EUR o USA. Estos xdelta deben sustituirse en los Resources
                     // por los específicos de cada juego.
 
                     ProcessStartInfo xdelta = new ProcessStartInfo();
@@ -223,10 +230,14 @@ namespace Parcheador3DS
                         }
                     }
 
-                    // Proceso para aplicar un xdelta al archivo exeFS.bin. Si tu parche no incluye modificaciones sobre el exeFS.bin,
-                    // deja el proceso comentado. 
-
-                    /* ProcessStartInfo xdeltaEXEFS = new ProcessStartInfo();
+                    /******************************************************************************************************************
+                    *                                                                                                                 * 
+                    * Proceso para aplicar un xdelta al archivo exeFS.bin. Si tu parche no incluye modificaciones sobre el exeFS.bin, *
+                    * deja el proceso comentado.                                                                                      *
+                    *                                                                                                                 *
+                    ******************************************************************************************************************/
+                    /*
+                     ProcessStartInfo xdeltaEXEFS = new ProcessStartInfo();
                      {
                          string program = "temp/xdelta3.exe";
                          string arguments = "";
@@ -250,7 +261,8 @@ namespace Parcheador3DS
                         MessageBox.Show(error);
                         proceso.WaitForExit();
                      } 
-                     rutaEXEFS= "temp/modificado/exefs.bin"; */
+                     rutaEXEFS= "temp/modificado/exefs.bin";
+                     */
                     if (luma.Checked || ntr.Checked)
                     {
                         File.WriteAllText("temp/lista.txt", Properties.Resources.lista);
@@ -382,7 +394,7 @@ namespace Parcheador3DS
                     label2.Text = "Proceso terminado.";
                     groupBox3.Refresh();
 
-                    // Cambia el nombre de esta variable para la carpeta donde se guardarán los archivos 3DS, CIA y los
+                    // Cambia el valor de esta variable para cambiar el nombre de la carpeta donde se guardarán los archivos 3DS, CIA y los
                     // parches luma y NTR en caso de que el usuario decida no aplicar directamente el parche a la SD.
 
                     string carpetaFinal = "CCCI_LJT";
@@ -409,7 +421,6 @@ namespace Parcheador3DS
                                 MessageBox.Show("¿Qué has pulsado?");
                                 break;
                         }
-
                     }
                     else
                     {
@@ -432,6 +443,12 @@ namespace Parcheador3DS
             {
                 MessageBox.Show("No se ha seleccionado ningún archivo, no podrás realizar el parcheo.", "Ningún archivo seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            //Cambia la URL dentro del proceso con la de tu grupo o web deseada.
+            Process.Start("http://ljttraducciones.wordpress.com");
         }
     }
 }
