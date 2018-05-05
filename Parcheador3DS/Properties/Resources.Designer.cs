@@ -71,6 +71,26 @@ namespace Parcheador3DS.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _9da2b14829a59bfb {
+            get {
+                object obj = ResourceManager.GetObject("_9da2b14829a59bfb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] code {
+            get {
+                object obj = ResourceManager.GetObject("code", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
         internal static byte[] ctrtool {
@@ -101,11 +121,81 @@ namespace Parcheador3DS.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] exheaderEUR {
+            get {
+                object obj = ResourceManager.GetObject("exheaderEUR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] exheaderUSA {
+            get {
+                object obj = ResourceManager.GetObject("exheaderUSA", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        /// </summary>
+        internal static System.Drawing.Icon francesca {
+            get {
+                object obj = ResourceManager.GetObject("francesca", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a effect\00_resident_effects.bcmdl
+        ///effect\damage_tex01.elvi
+        ///ending\end.ctpk
+        ///layout\ui_Achieve.arc
+        ///layout\ui_bath.arc
+        ///layout\ui_bath_b.arc
+        ///layout\ui_bonus_act.arc
+        ///layout\ui_btl_b_cmd.arc
+        ///layout\ui_btl_b_st.arc
+        ///layout\ui_btl_cm_01.arc
+        ///layout\ui_btl_cm_02.arc
+        ///layout\ui_btl_tl.arc
+        ///layout\ui_btl_tl_bg.arc
+        ///layout\ui_combo.arc
+        ///layout\ui_E_collect.arc
+        ///layout\ui_formation.arc
+        ///layout\ui_formation_02.arc
+        ///layout\ui_gallery.arc
+        ///layout\ui_hikitsugi.arc
+        ///layout\ui_hikitsugi_item.arc
+        ///layout\ui_item_win.arc [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string lista {
             get {
                 return ResourceManager.GetString("lista", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo {
+            get {
+                object obj = ResourceManager.GetObject("logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LOGO1 {
+            get {
+                object obj = ResourceManager.GetObject("LOGO1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -154,6 +244,26 @@ namespace Parcheador3DS.Properties {
             get {
                 object obj = ResourceManager.GetObject("parcheUSAD", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sin_título_1 {
+            get {
+                object obj = ResourceManager.GetObject("Sin_título_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap texture_1027726_640 {
+            get {
+                object obj = ResourceManager.GetObject("texture_1027726_640", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

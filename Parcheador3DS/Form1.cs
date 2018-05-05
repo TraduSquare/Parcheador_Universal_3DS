@@ -102,16 +102,17 @@ namespace Parcheador3DS
                     // de tu juego es distinto, cámbialo aquí. Los xdelta deben cambiarse en los Resources para cada juego y versión
                     if (usa.Checked)
                     {
-                        region = "00040000001a6600";
+                        region = "0004000000164300";
                         ntrPatch = "ntrusa";
                         xdt = "parcheUSAD";
                     }
                     else if (eur.Checked)
                     {
-                        region = "00040000001a6f00";
+                        region = "0004000000165500";
                         ntrPatch = "ntreur";
                         xdt = "parcheEURD";
                     }
+                
                     if (Directory.Exists("temp"))
                     {
                         Directory.Delete("temp", true);
@@ -128,6 +129,7 @@ namespace Parcheador3DS
                     File.WriteAllBytes("temp/xdelta3.exe", Properties.Resources.xdelta3);
                     File.WriteAllBytes("temp/3dstools.exe", Properties.Resources._3dstools);
                     File.WriteAllBytes("temp/makerom.exe", Properties.Resources.makerom);
+                    File.WriteAllBytes("temp/parches/code.ips", Properties.Resources.code);
 
                     /* En muchas ocasiones el romfs es igual para todas las regiones. En ese caso, introducir en las resources solo
                      * el parche EUR y modificar la llamada "Properties.Resources" sustituyendo "parcheUSAD"
@@ -144,11 +146,13 @@ namespace Parcheador3DS
                     {
                         File.WriteAllBytes("temp/parches/parcheEURD.xdelta", Properties.Resources.parcheEURD);
                         File.WriteAllBytes("temp/parches/exeFSEUR.xdelta", Properties.Resources.exeFSEUR);
+                        File.WriteAllBytes("temp/parches/exheaderEUR.xdelta", Properties.Resources.exheaderEUR);
                     }
                     else if (xdt == "parcheUSAD")
                     {
-                        File.WriteAllBytes("temp/parches/parcheUSAD.xdelta", Properties.Resources.parcheUSAD);
+                        File.WriteAllBytes("temp/parches/parcheEURD.xdelta", Properties.Resources.parcheEURD);
                         File.WriteAllBytes("temp/parches/exeFSUSA.xdelta", Properties.Resources.exeFSUSA);
+                        File.WriteAllBytes("temp/parches/exheaderUSA.xdelta", Properties.Resources.exheaderUSA);
                     }
                     string rutaJuego = textBox1.Text;
 
@@ -176,7 +180,7 @@ namespace Parcheador3DS
 
                     //Se extrae el contenido del CXI.
 
-                    label2.Text = "Extrayendo archivo romfs.bin";
+                    label2.Text = "Extrayendo el archivo .cxi";
                     groupBox3.Refresh();
                     ProcessStartInfo process = new ProcessStartInfo();
                     {
@@ -201,14 +205,14 @@ namespace Parcheador3DS
                     {
                         string program = "temp/xdelta3.exe";
                         string arguments = "";
-
+                        
                         if (xdt == "parcheEURD")
                         {
                             arguments = "-d -s \"" + Directory.GetCurrentDirectory() + "\\temp\\original\\romfs.bin\" \"" + Directory.GetCurrentDirectory() + "\\temp\\parches\\parcheEURD.xdelta\" \"" + Directory.GetCurrentDirectory() + "\\temp\\modificado\\romfs.bin\"";
                         }
                         else if (xdt == "parcheUSAD")
                         {
-                            arguments = "-d -s \"" + Directory.GetCurrentDirectory() + "\\temp\\original\\romfs.bin\" \"" + Directory.GetCurrentDirectory() + "\\temp\\parches\\parcheUSAD.xdelta\" \"" + Directory.GetCurrentDirectory() + "\\temp\\modificado\\romfs.bin\"";
+                            arguments = "-d -s \"" + Directory.GetCurrentDirectory() + "\\temp\\original\\romfs.bin\" \"" + Directory.GetCurrentDirectory() + "\\temp\\parches\\parcheEURD.xdelta\" \"" + Directory.GetCurrentDirectory() + "\\temp\\modificado\\romfs.bin\"";
                         }
                         xdelta.FileName = program;
                         xdelta.Arguments = arguments;
@@ -229,6 +233,44 @@ namespace Parcheador3DS
                             return;
                         }
                     }
+                    label2.Text = "Aplicando parche al archivo exheader.bin";
+                    groupBox3.Refresh();
+
+                    // En este caso, se tiene que aplicar un parche al exheader del juego para aumentar la memoria asignada para evitar fallos en la traducción.
+                    // Sustituye los xdelta por los específicos de cada juego.
+
+                    ProcessStartInfo xdeltaEXHEADER = new ProcessStartInfo();
+                    {
+                        string program = "temp/xdelta3.exe";
+                        string arguments = "";
+
+                        if (xdt == "parcheEURD")
+                        {
+                            arguments = "-n -d -s \"" + Directory.GetCurrentDirectory() + "\\temp\\original\\exheader.bin\" \"" + Directory.GetCurrentDirectory() + "\\temp\\parches\\exheaderEUR.xdelta\" \"" + Directory.GetCurrentDirectory() + "\\temp\\modificado\\exheader.bin\"";
+                        }
+                        else if (xdt == "parcheUSAD")
+                        {
+                            arguments = "-n -d -s \"" + Directory.GetCurrentDirectory() + "\\temp\\original\\exheader.bin\" \"" + Directory.GetCurrentDirectory() + "\\temp\\parches\\exheaderUSA.xdelta\" \"" + Directory.GetCurrentDirectory() + "\\temp\\modificado\\exheader.bin\"";
+                        }
+                        xdelta.FileName = program;
+                        xdelta.Arguments = arguments;
+                        xdelta.UseShellExecute = false;
+                        xdelta.CreateNoWindow = true;
+                        xdelta.ErrorDialog = true;
+                        xdelta.RedirectStandardError = true;
+                        xdelta.RedirectStandardOutput = true;
+                        Process x2 = Process.Start(xdelta);
+                        string error = x2.StandardError.ReadToEnd();
+                        x2.WaitForExit();
+                        if (error != "")
+                        {
+                            MessageBox.Show("No se ha podido parchear el juego. ¿Estás usando la versión adecuada?", "Error al parchear", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Directory.Delete("temp", true);
+                            label2.Text = "Rellena los campos para comenzar.";
+                            groupBox3.Refresh();
+                            return;
+                        }
+                    }
 
                     /******************************************************************************************************************
                     *                                                                                                                 * 
@@ -236,8 +278,9 @@ namespace Parcheador3DS
                     * deja el proceso comentado.                                                                                      *
                     *                                                                                                                 *
                     ******************************************************************************************************************/
-                    /*
-                     ProcessStartInfo xdeltaEXEFS = new ProcessStartInfo();
+                    label2.Text = "Aplicando parche al archivo exeFS.bin";
+                    groupBox3.Refresh();
+                    ProcessStartInfo xdeltaEXEFS = new ProcessStartInfo();
                      {
                          string program = "temp/xdelta3.exe";
                          string arguments = "";
@@ -258,11 +301,11 @@ namespace Parcheador3DS
                          xdeltaEXEFS.RedirectStandardOutput = true;
                          Process proceso = Process.Start(xdeltaEXEFS);
                          string error = proceso.StandardError.ReadToEnd();
-                        MessageBox.Show(error);
+                        /*MessageBox.Show(error);*/
                         proceso.WaitForExit();
                      } 
                      rutaEXEFS= "temp/modificado/exefs.bin";
-                     */
+                     
                     if (luma.Checked || ntr.Checked)
                     {
                         File.WriteAllText("temp/lista.txt", Properties.Resources.lista);
@@ -291,7 +334,10 @@ namespace Parcheador3DS
                             label2.Text = "Creando parche NTR.";
                             groupBox3.Refresh();
                             //El contenido de la variable "carpetaNTR" debe ser la carpeta que use el parche NTR.
-                            string carpetaNTR = "LJT/CCCIDM/";
+                            string carpetaNTR = "GlowTranslations/LOM/";
+                            Directory.CreateDirectory("temp/final/luma/titles/" + region);
+                            File.Copy("temp/parches/code.ips", "temp\\final\\luma\\titles\\" + region + "\\code.ips");
+                            File.Copy("temp/modificado/exheader.bin", "temp\\final\\luma\\titles\\" + region + "\\exheader.bin");
                             for (int i = 0; i < lista.Length; i++)
                             {
                                 string ruta = Path.GetDirectoryName(lista[i]);
@@ -327,6 +373,8 @@ namespace Parcheador3DS
                                 }
                                 File.Copy("temp/extraido/romfs/" + lista[i], "temp\\final\\luma\\titles\\" + region + "\\romfs\\" + lista[i]);
                             }
+                            File.Copy("temp/parches/code.ips", "temp\\final\\luma\\titles\\" + region + "\\code.ips");
+                            File.Copy("temp/modificado/exheader.bin", "temp\\final\\luma\\titles\\" + region + "\\exheader.bin");
                         }
                     }
                     else if (DS.Checked || cia.Checked)
@@ -336,7 +384,7 @@ namespace Parcheador3DS
 
                         // Modifica esta variable para cambiar el nombre del archivo .3DS o .cia del juego modificado
 
-                        string nombreJuego = "CCCI";
+                        string nombreJuego = "LOMESP";
                         if (!Directory.Exists("temp/final"))
                         {
                             Directory.CreateDirectory("temp/final");
@@ -344,7 +392,7 @@ namespace Parcheador3DS
                         ProcessStartInfo compCXI = new ProcessStartInfo();
                         {
                             string program = "temp/3dstools.exe";
-                            string arguments = "-cvtf cxi \"temp\\modificado\\" + region + ".cxi\" --header \"temp/original/ncchheader.bin\" --exh \"temp/original/exheader.bin\" --exefs \""+ rutaEXEFS + "\" --romfs \"temp/modificado/romfs.bin\" --logo \"temp/original/logo.bcma.lz\" --plain \"temp/original/plain.bin\"";
+                            string arguments = "-cvtf cxi \"temp\\modificado\\" + region + ".cxi\" --header \"temp/original/ncchheader.bin\" --exh \"temp/modificado/exheader.bin\" --exefs \""+ rutaEXEFS + "\" --romfs \"temp/modificado/romfs.bin\" --logo \"temp/original/logo.bcma.lz\" --plain \"temp/original/plain.bin\"";
                             compCXI.FileName = program;
                             compCXI.Arguments = arguments;
                             compCXI.UseShellExecute = false;
@@ -397,10 +445,19 @@ namespace Parcheador3DS
                     // Cambia el valor de esta variable para cambiar el nombre de la carpeta donde se guardarán los archivos 3DS, CIA y los
                     // parches luma y NTR en caso de que el usuario decida no aplicar directamente el parche a la SD.
 
-                    string carpetaFinal = "CCCI_LJT";
-                    if (luma.Checked||ntr.Checked)
-                    {
-                        var seleccion = MessageBox.Show("El parche se ha creado correctamente. ¿Quieres que lo apliquemos a tu juego?", "Proceso finalizado.", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    string carpetaFinal = "Lord of Magna Maiden Heaven Español";
+                    if (luma.Checked||ntr.Checked||DS.Checked ||cia.Checked)
+                    {                        
+                        string directorio = Directory.GetCurrentDirectory().ToString() + "/" + carpetaFinal;
+                        if (Directory.Exists(directorio))
+                        {
+                            Directory.Delete(directorio, true);
+                        }
+                        Directory.Move("temp/final", directorio);
+                        Process.Start(directorio);
+                        Directory.Delete("temp", true);
+                        MessageBox.Show("El parche se ha creado correctamente, si tienes alguna duda, consulta con el manual de instrucciones.", "Proceso terminado.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        /*var seleccion = MessageBox.Show("El parche se ha creado correctamente. ¿Quieres que lo copie a tu tarjeta de memoria?", "Proceso finalizado.", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         switch (seleccion)
                         {
                             case DialogResult.Yes:
@@ -420,7 +477,7 @@ namespace Parcheador3DS
                             default:                 // Neither Yes nor No pressed (just in case)
                                 MessageBox.Show("¿Qué has pulsado?");
                                 break;
-                        }
+                        }*/
                     }
                     else
                     {
@@ -448,7 +505,47 @@ namespace Parcheador3DS
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             //Cambia la URL dentro del proceso con la de tu grupo o web deseada.
-            Process.Start("http://ljttraducciones.wordpress.com");
+            Process.Start("http://glowtranslations.tk/");
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void usa_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://lordofmagna.com/");
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://tradusquare.es//");
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+                MessageBox.Show("Esta traducción ha sido realizada por GlowTranslations.\n\nVersión del parche: 1.0\n\nCréditos:\nLíderes del proyecto: Xppancho y Darkmet98\nRomhacking: Raugo y Darkmet98.\nTraductores: Darkmet98, Xppancho, Lilia.~, Sorium, Erena, Hec17, ElaineWeasley y Sonicus.\nCorrectores: Sany, Jesa, Azu, Erena y Sonicus.\nEditores Gráficos: Darkmet98.\nVídeos: Darkmet98, Sorium, Xppancho y Sonicus.\nBetatesters: Xppancho, Darkmet98, Eliden, Sorium y Sonicus.\nAgradecimientos: Shiryu por las sources del parcheador Windows y a TraduSquare por el apoyo y consejos que nos ha dado a lo largo de la traducción.\n\nRecuerda, GlowTranslations no apoya la pirateria y este parche ha sido hecho por fans para fans, el contenido es gratuito y no se puede vender. Si te han vendido el parche, significa que te han estafado.");
         }
     }
 }

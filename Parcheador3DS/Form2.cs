@@ -35,7 +35,7 @@ namespace Parcheador3DS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string directorio = Directory.GetCurrentDirectory().ToString() + "/CCCI_LJT";
+            string directorio = Directory.GetCurrentDirectory().ToString() + "/Lord of Magna Maiden Heaven Español";
             copiaFinal();
         }
         
@@ -106,7 +106,7 @@ namespace Parcheador3DS
         private static void copiaFinal()
         {
             // Edita esta variable para cambiar el nombre de la carpeta donde se guarde el parche Luma o NTR en caso de que se cancele la copia a la SD.
-            string carpetaFinal = "CCCI_LJT";
+            string carpetaFinal = "Lord of Magna Maiden Heaven Español";
             string directorio = Directory.GetCurrentDirectory().ToString() + "/" + carpetaFinal;
             if (Directory.Exists(directorio))
             {

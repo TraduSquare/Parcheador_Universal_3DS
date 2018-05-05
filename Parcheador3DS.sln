@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parcheador3DS", "Parcheador3DS\Parcheador3DS.csproj", "{1F12232D-424D-4B93-A074-F9989C668B28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parcheador Lord Of Magna Maiden Heaven al español", "Parcheador3DS\Parcheador Lord Of Magna Maiden Heaven al español.csproj", "{1F12232D-424D-4B93-A074-F9989C668B28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
