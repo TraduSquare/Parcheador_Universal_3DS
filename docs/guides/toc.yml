@@ -1,0 +1,8 @@
+- name: Guides
+  items:
+    - name: Quick start
+      href: Quick-Start.md
+- name: Contributing
+  items:
+    - name: Guidelines
+      href: Contributing.md

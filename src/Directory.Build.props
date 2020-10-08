@@ -1,0 +1,32 @@
+<Project>
+    <PropertyGroup>
+        <Product>Tradusquare.Patcher</Product>
+        <Authors>TraduSquare</Authors>
+        <Company>None</Company>
+        <Copyright>Copyright (C) 2020 TraduSquare</Copyright>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/TraduSquare/Parcheador_Universal_3DS</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/TraduSquare/Parcheador_Universal_3DS</RepositoryUrl>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageTags>tradusquare;patcher;fan-translation</PackageTags>
+
+        <!-- Deterministic and source link -->
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    </PropertyGroup>
+
+    <!-- Deterministic and source link -->
+    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+        <Deterministic>true</Deterministic>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    </ItemGroup>
+</Project>

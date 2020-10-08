@@ -1,0 +1,78 @@
+name: Build and test
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+env:
+  VERSION_NETCORESDK: '3.1.402'
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 'true'
+  DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
+
+jobs:
+  build_lin:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.VERSION_NETCORESDK }}
+    - name: Restore tools
+      run: |
+        dotnet tool restore
+        dotnet cake --bootstrap
+    - name: Build, test and create artifacts
+      run: dotnet cake --target=Stage-Artifacts --configuration=Release --verbosity=diagnostic
+    - name: Remove old artifacts # Create space for our new artifact
+      uses: c-hive/gha-remove-artifacts@v1
+      with:
+        age: '1 minute'
+        skip-tags: false # we use github releases for that
+        skip-recent: 1
+    - name: Publish artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        path: |
+          ./artifacts/*.zip
+          ./artifacts/*.nupkg
+          ./artifacts/*.snupkg
+          ./artifacts/_site/**
+
+  build_mac:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.VERSION_NETCORESDK }}
+    - name: Restore tools
+      run: |
+        dotnet tool restore
+        dotnet cake --bootstrap
+    - name: Build and test
+      run: dotnet cake --target=BuildTest --configuration=Release --verbosity=diagnostic
+
+  build_win:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.VERSION_NETCORESDK }}
+    - name: Restore tools
+      run: |
+        dotnet tool restore
+        dotnet cake --bootstrap
+    - name: Build and test
+      run: dotnet cake --target=BuildTest --configuration=Release --verbosity=diagnostic
